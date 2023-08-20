@@ -12,8 +12,17 @@ class UserVideo extends Model
     protected $table = 'user_videos';
 
     protected $fillable = [
-            'user_id',
-            'video_id',
-            
-        ];
+        'user_id',
+        'video_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+    
+    public function videos()
+    {
+        return $this->belongsTo(Video::class,'video_id','id');
+    }
 }

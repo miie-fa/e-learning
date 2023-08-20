@@ -10,8 +10,9 @@ class TransactionDetail extends Model
     use HasFactory;
 
     protected $table = 'transaction_details';
+
     protected $fillable = [
-        'transaction_id',
         'video_id',
+        'transaction_id',
     ];
 }

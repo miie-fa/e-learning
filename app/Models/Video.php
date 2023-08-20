@@ -10,10 +10,16 @@ class Video extends Model
     use HasFactory;
 
     protected $table = 'videos';
+
     protected $fillable = [
-        'title',
         'link',
+        'title',
         'price',
-        'description',
+        'desc',
     ];
+
+    public function userVideo()
+    {
+        return $this->hasOne(UserVideo::class);
+    }
 }

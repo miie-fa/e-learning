@@ -12,7 +12,7 @@ class Discount extends Model
     protected $table = 'discounts';
 
     protected $fillable = [
-        'discount',
-        'video_id',
+        'discounts',
+        'id_video',
     ];
 }
