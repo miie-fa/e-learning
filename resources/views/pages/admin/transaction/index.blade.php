@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Transaction')
+@section('title' , 'Detail Transaction')
 
 @section('content')
         <div class="sm:ml-64 bg-gray-900">
@@ -10,86 +10,128 @@
                     <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
                         <div class="flex-row items-center justify-between p-4 space-y-3 sm:flex sm:space-y-0 sm:space-x-4">
                             <div>
-                                <h5 class="mr-3 font-semibold dark:text-white">Table Transaksi</h5>
-                                <p class="text-gray-500 dark:text-gray-400">Menampilkan semua transaksi</p>
+                                <h5 class="mr-3 font-semibold dark:text-white">Detail Transaksi</h5>
+                                <p class="text-gray-500 dark:text-gray-400">Menampilkan Data Transaksi</p>
                             </div>
+                            <a href="{{ route('admin.transaction.index') }}"
+                                class="flex bg-gray-700 items-center justify-center px-4 py-2 text-sm font-medium text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+                                Kembali
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <div class="flex items-center justify-end pb-4 bg-white dark:bg-gray-900">
-                        <label for="table-search" class="sr-only">Search</label>
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
+                    <div>
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="no_invoice" id="no_invoice"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " value="1123992" disabled required />
+                            <label for="no_invoice"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nomer
+                                Invoice</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="user_id" id="user_id"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " value="Hudzaifah" disabled required />
+                            <label for="user_id"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Nama
+                                User</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-6 group">
+                            <div
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                                <span
+                                    class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                                    Berhasil
+                                </span>
                             </div>
-                            <input type="text" id="table-search-videos"
-                                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for transaction">
+                            <label for="email"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Status</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="amount" id="amount"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " value="Rp 300.000" disabled required />
+                            <label for="amount"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Jumlah</label>
+                        </div>
+                        <div class="relative z-0 w-full mb-6 group">
+                            <input type="text" name="created_at" id="created_at"
+                                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                placeholder=" " value="2019-12-30 08:37:06" disabled required />
+                            <label for="created_at"
+                                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Waktu
+                                Membayar</label>
                         </div>
                     </div>
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    No INV
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Nominal
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Status
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($transactions as $item)
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <th scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            1123992
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Rp 300.000
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                                                Berhasil
-                                            </span>
-                                            <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                                                <span class="w-2 h-2 mr-1 bg-red-500 rounded-full"></span>
-                                                Gagal
-                                            </span>
-                                            <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
-                                                <span class="w-2 h-2 mr-1 bg-yellow-500 rounded-full"></span>
-                                                Expaired
-                                            </span>
-                                        </td>
-                                        <td class="flex items-center px-6 py-4 space-x-3">
-                                            <a href="{{ route('admin.transaction.show' , $data->id) }}"
-                                                class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</a>
-                                        </td>
-                                    </tr>
-                            @empty
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td colspan="4" class="py-5">
-                                        <p>Data is NULL</p>
+
+                    <div class="w-full max-w-screen-xl mx-auto mb-4 mt-10">
+                        <!-- Start coding here -->
+                        <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+                            <div
+                                class="flex-row items-center justify-between p-4 space-y-3 sm:flex sm:space-y-0 sm:space-x-4">
+                                <div>
+                                    <h5 class="mr-3 font-semibold dark:text-white">Table Videos</h5>
+                                    <p class="text-gray-500 dark:text-gray-400">Menampilkan video yang dibeli</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <div class="flex items-center justify-end pb-4 bg-white dark:bg-gray-900">
+                            <div>
+                                <!-- Dropdown menu -->
+                                <div id="dropdownAction"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+                                    <div class="py-1">
+                                        <button form="select"
+                                            class="block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete
+                                            Video</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Title
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Harga
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Deskripsi
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        Tematik develop
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        Rp 300.000
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        Ada banyak hal yang ...
+                                    </td>
+                                    <td class="flex items-center px-6 py-4 space-x-3">
+                                        <a href="./../videos/videos_detail.html"
+                                            class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</a>
                                     </td>
                                 </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
         </div>
 @endsection
