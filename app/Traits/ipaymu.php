@@ -3,26 +3,33 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Http;
 
-trait ipaymu {
-    protected function balance()
-    {
-        $va           = '0000002142719548'; //get on iPaymu dashboard
-        $apiKey       = 'SANDBOX3C5BEDC6-1552-45E1-B350-43A399FF123A'; //get on iPaymu dashboard
-        $url          = 'https://sandbox.ipaymu.com/api/v2/balance'; // for development mode     
-        $method       = 'POST'; //method     
-        //Request Body//
-        $body['account']    = $va;
-        //End Request Body//
+trait Ipaymu {
+    public $va;
+    public $apiKey;
 
-        //Generate Signature
-        // *Don't change this
+    public function __construct(){
+        $this->va = config('ipaymu.va');
+        $this->apiKey = config('ipaymu.api_key');
+    }
+
+    public function signature($body, $method){
         $jsonBody     = json_encode($body, JSON_UNESCAPED_SLASHES);
         $requestBody  = strtolower(hash('sha256', $jsonBody));
-        $stringToSign = strtoupper($method) . ':' . $va . ':' . $requestBody . ':' . $apiKey;
-        $signature    = hash_hmac('sha256', $stringToSign, $apiKey);
-        $timestamp    = Date('YmdHis');
-        //End Generate Signature
+        $stringToSign = strtoupper($method) . ':' . $this->va . ':' . $requestBody . ':' . $this->apiKey;
+        $signature    = hash_hmac('sha256', $stringToSign, $this->apiKey);
+    
+        return $signature;
+    }
 
+    protected function balance()
+    {
+        $va           = $this->va; 
+        $url          = 'https://sandbox.ipaymu.com/api/v2/balance';  
+        $method       = 'POST';    
+        $timestamp    = Date('YmdHis');
+
+        $body['account']    = $va;
+        $signature = $this->signature($body, $method);
 
         $headers = array(
             'Accept' => 'application/json',

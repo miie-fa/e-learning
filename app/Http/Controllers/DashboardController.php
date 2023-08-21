@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    use ipaymu;
+    use Ipaymu;
     public function index()
     {
          // SAMPLE HIT API iPaymu v2 PHP //

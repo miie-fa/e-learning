@@ -5,16 +5,11 @@ namespace App\Traits;
 use Illuminate\Support\Facades\Http;
 
 trait Fonnte {
-    public $token;
-    
-    public function __construct(){
-        $this->token = config('fonnte');
-    }
 
     protected function send_message($target, String $messages){
 
         $headers = [
-            'Authorization' => $this->token,
+            'Authorization' => config('fonnte'),
         ];
 
         $url = "https://api.fonnte.com/send";

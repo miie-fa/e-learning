@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Traits\Fonnte;
+use App\Traits\fonnte;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-
-    use Fonnte;
+        use fonnte;
         /**
      * Handle an authentication attempt.
      */
@@ -31,10 +30,9 @@ class AuthController extends Controller
                 'password' => ['required'],
             ]);
 
+            $user = User::where('email',$request->email)->first();
 
-            $user = User::where('email', $request->email)->first();
-
-            if ($user && $user->active == 0) {
+            if($user && $user->active == 0){
                 return redirect()->route('activication');
             }
     
@@ -54,17 +52,17 @@ class AuthController extends Controller
             $data = $request->validate([
                 'name' => ['required', 'max:50', 'string'],
                 'email' => ['required', 'email'],
-                'phone' => ['required'],
+                'phone' => ['required', 'unique:users,phone'],
                 'password' => ['required', 'confirmed'],
             ]);
 
-            $data['token'] = rand(111111, 999999);
+            $data['token'] = rand(111111,999999);
 
             $user = User::create($data);
 
-            $messages = "Verificate Your Account $user->token";
+            $messages = "Verivication ur Account $user->token";
 
-            $this->send_message($user->phone, $messages);
+            $this->send_message($user->phone,$messages);
 
             try{
                 return redirect()->route('activication');
@@ -77,25 +75,23 @@ class AuthController extends Controller
             return back()->withInput();
         }
 
-        public function activication(){
+        public function activication()
+        {
             return view('pages.auth.activication');
         }
 
-        public function activication_process (Request $request){
+        public function activication_process(Request $request)
+        {
+            $user = User::where('token',$request->token)->first();
 
-            $user = User::where('token', $request->token)->first();
-            
-            if ($user){
+            if($user){
                 $user->update([
-                    'active' => 1,
+                    'active' => 1
                 ]);
-
+                return redirect()->route('login');
             }
-            return redirect()->route('login');
-            
-            return redirect()->back()->with('error', 'Token Tidak sesuai');
+            return redirect()->back()->with('error','Token Tidak Sesuai');
         }
-
         public function logout()
         {
             Auth::logout();
