@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Http;
 trait ipaymu {
     protected function balance()
     {
-        $va           = '0000002346739790'; //get on iPaymu dashboard
-        $apiKey       = 'SANDBOX385FB515-55F1-4ED6-BC5E-12470D13D305'; //get on iPaymu dashboard
+        $va           = '0000002142719548'; //get on iPaymu dashboard
+        $apiKey       = 'SANDBOX3C5BEDC6-1552-45E1-B350-43A399FF123A'; //get on iPaymu dashboard
         $url          = 'https://sandbox.ipaymu.com/api/v2/balance'; // for development mode     
         $method       = 'POST'; //method     
         //Request Body//
