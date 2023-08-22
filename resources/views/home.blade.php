@@ -133,39 +133,23 @@
             <div class="splide" aria-label="Splide Basic HTML Example">
                 <div class="splide__track">
                     <ul class="splide__list">
+                        @foreach ($teachers as $teacher)
                         <li class="splide__slide">
                             <div
                                 class="mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <!-- <img class="rounded-t-lg" src="./assets/teacher-1.jpeg" alt="" /> -->
+                                <div>
                                     <div class="w-full h-56"
-                                        style="background-size: cover; background-image: url('./assets/teacher-1.jpeg');">
+                                        style="background-size: cover; background-image: url('{{asset($teacher->image)}}');">
                                     </div>
-                                </a>
+                                </div>
                                 <div class="p-5">
-                                    <h5
-                                        class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                        Mbak Nayla</h5>
+                                    <h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                    {{ $teacherr->name }}
+                                    </h5>
                                 </div>
                             </div>
                         </li>
-                        <li class="splide__slide">
-                            <div
-                                class="mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <a href="#">
-                                    <!-- <img class="rounded-t-lg" src="./assets/teacher-2.jpeg" alt="" /> -->
-                                    <div class="w-full h-56"
-                                        style="background-size: cover; background-image: url('./assets/teacher-2.jpeg');">
-                                    </div>
-                                </a>
-                                <div class="p-5">
-                                    <h5
-                                        class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                        Mbak Kayla</h5>
-                                </div>
-                            </div>
-
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

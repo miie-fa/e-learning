@@ -6,68 +6,53 @@ use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 
-class TransactionController extends Controller 
+class TransactionController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $transaction = Transaction::paginate(5);
+        return view('pages.admin.transaction.index',compact('transaction'));
+    }
 
-  /**
-   * Display a listing of the resource.
-   */
-  public function index()
-  {
-    $transactions = Transaction::paginate(5);
-    return view('pages.admin.transaction.index', compact('transactions'));
-  }
+    /**
+     * Show the form for creating a new resource.
+     */
 
-  public function create()
-  {
-    // return view to create new transaction 
-  }
 
-  public function store(Request $request)
-  {
-    // validate request
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $transaction = Transaction::with(['user'])->find($id);
+        $transaction_details = TransactionDetail::with(['videos'])->where('transaction_id',$transaction->id)->get();
+        return view('pages.admin.transaction.detail',compact('transaction','transaction_details'));
+    }
 
-    // create new transaction using request data
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-    // redirect with success message
-  }
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
-  public function show(string $id)
-  {
-    $transaction = Transaction::findOrFail($id);
-
-    $transaction_details = TransactionDetail::with(['videos'])
-      ->where('transaction_id', $transaction->id)
-      ->get();
-
-    return view('pages.admin.transaction.detail', compact('transaction', 'transaction_details'));
-  }
-
-  public function edit(string $id)
-  {
-    $transaction = Transaction::findOrFail($id);
-
-    // return view to edit transaction
-  }
-
-  public function update(Request $request, string $id)
-  {
-    $transaction = Transaction::findOrFail($id);
-
-    // validate request
-
-    // update transaction using request data
-
-    // redirect with success message
-  }
-
-  public function destroy(string $id)
-  {
-    $transaction = Transaction::findOrFail($id);
-
-    // delete transaction
-
-    // redirect with success message
-  }
-
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
 }

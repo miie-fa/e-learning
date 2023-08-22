@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('amount');
             $table->text('link');
             $table->foreignId('user_id');
+            $table->foreignId('video_id');
             $table->timestamps();
         });
     }

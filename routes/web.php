@@ -4,8 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\User\VideoController as VideoRoleUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,19 +21,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/',[HomeController::class, 'index'])->name('home'); 
 
-// Route::prefix('/user')->name('user.')->group(function() {
-//     Route::get('/videos', function () {
-//         return view('pages.user.videos');
-//     })->name('video');
+//User
+Route::prefix('/user')->name('user.')->group(function() {
+    Route::get('/videos',[VideoRoleUserController::class, 'index'])->name('video'); 
 
-//     Route::get('/my-videos', function () {
-//         return view('pages.user.my_videos');
-//     })->name('my.video');
-// });
+    Route::get('/my-videos',[VideoRoleUserController::class, 'index_my_video'])->name('my.video'); 
+
+});
 
 //AUTHENTICATION
 Route::middleware('guest')->group(function(){

@@ -7,6 +7,7 @@ use App\Traits\fonnte;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 
 class AuthController extends Controller
@@ -57,7 +58,10 @@ class AuthController extends Controller
             ]);
 
             $data['token'] = rand(111111,999999);
-
+            if (Str::substr($request->phone, 0, 1) == 0){
+            
+            }
+            $data['phone'];
             $user = User::create($data);
 
             $messages = "Verivication ur Account $user->token";

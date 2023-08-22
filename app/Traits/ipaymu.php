@@ -1,7 +1,9 @@
 <?php
 namespace App\Traits;
 
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Request;
 
 trait Ipaymu {
     public $va;
@@ -47,8 +49,35 @@ trait Ipaymu {
 
         $responser = $data_request->object();
 
-        // $balance = json_decode($responser);
-
         return $responser;
+    }
+
+    public function call_back(HttpRequest $request){
+        $va           = $this->va; 
+        $url          = 'https://sandbox.ipaymu.com/api/v2/balance';  
+        $method       = 'POST';    
+        $timestamp    = Date('YmdHis');
+
+        $body['account']    = $va;
+        $signature = $this->signature($body, $method);
+
+        $headers = array(
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'va' => $va,
+            'signature' => $signature,
+            'timestamp' => $timestamp
+        );
+
+        $data_request = Http::withHeaders(
+            $headers
+        )->post($url, [
+            'account' => $va
+        ]);
+        
+        $data =[
+            'sid' => $request->sid,
+            'status' => $request->status,
+        ];
     }
 }

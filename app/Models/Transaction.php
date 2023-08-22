@@ -15,5 +15,8 @@ class Transaction extends Model
         'status',
         'no_invoice',
         'user_id',
+        'link',
+        'amount',
+        'video_id',
     ];
 }
