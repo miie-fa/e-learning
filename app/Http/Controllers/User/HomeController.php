@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $teachers = User::where('role', 'teacher')->get();
+    public function index()
+    {
+        $teachers = User::where('role','teacher')->get();
 
-        return view('home', compact('teachers'));
+        return view('home',compact('teachers'));
     }
 }

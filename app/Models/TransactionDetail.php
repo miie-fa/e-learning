@@ -15,4 +15,14 @@ class TransactionDetail extends Model
         'video_id',
         'transaction_id',
     ];
+
+    public function videos()
+    {
+        $this->belongsTo(Video::class);
+    }
+
+    public function transaction()
+    {
+        $this->belongsTo(Transaction::class);
+    }
 }

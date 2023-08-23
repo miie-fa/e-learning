@@ -15,8 +15,16 @@ class Transaction extends Model
         'status',
         'no_invoice',
         'user_id',
-        'link',
-        'amount',
-        'video_id',
+        'video_id'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }

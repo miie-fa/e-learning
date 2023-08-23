@@ -139,15 +139,16 @@
                                 class="mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                                 <div>
                                     <div class="w-full h-56"
-                                        style="background-size: cover; background-image: url('{{asset($teacher->image)}}');">
+                                        style="background-size: cover; background-image: url({{asset($teacher->image)}});">
                                     </div>
                                 </div>
                                 <div class="p-5">
-                                    <h5 class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                    {{ $teacherr->name }}
-                                    </h5>
+                                    <h5
+                                        class="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                                        {{$teacher->name}}</h5>
                                 </div>
                             </div>
+
                         </li>
                         @endforeach
                     </ul>

@@ -16,13 +16,19 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::create([
-        'name' => 'admin',
-        'email' => 'admin@example.com',
-        'phone' => '6289514596741',
-        'active' => 1,
-        'role' => 'admin',
-        'token' => 123456,
-        'password' => Hash::make('12345678'),
+            'name' => 'admin123',
+            'email' => 'farhanmuti54@gmail.com',
+            'phone' => '6282346739790',
+            'role' => 'admin',
+            'active' => 1,
+            'token' => 123456,
+            'password' => Hash::make('12345678'),
         ]);
+        // \App\Models\User::factory(10)->create();
+
+        // \App\Models\User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
     }
 }

@@ -53,15 +53,17 @@ class AuthController extends Controller
             $data = $request->validate([
                 'name' => ['required', 'max:50', 'string'],
                 'email' => ['required', 'email'],
-                'phone' => ['required', 'unique:users,phone'],
+                'phone' => ['required','unique:users,phone'],
                 'password' => ['required', 'confirmed'],
             ]);
 
             $data['token'] = rand(111111,999999);
-            if (Str::substr($request->phone, 0, 1) == 0){
-            
+            if(Str::substr($request->phone,0,1) == 0){
+                $phone = explode('0',$request->phone);
+                $lastPhone = next($phone);
+                $data['phone'] = '62'.$lastPhone;
             }
-            $data['phone'];
+
             $user = User::create($data);
 
             $messages = "Verivication ur Account $user->token";

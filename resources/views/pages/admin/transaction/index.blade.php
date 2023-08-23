@@ -50,45 +50,50 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($transactions as $data)
-                                    <tr
-                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                        <th scope="row"
-                                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $data->no_inv }}
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            Rp {{ $data->amount }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            @if ($data->status == 'PENDING')
-                                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                                                    {{ $data->status }}
-                                                </span>
-                                            @elseif ($data->status == 'SUCCESS')
-                                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                                                    {{ $data->status }}
-                                                </span>
-                                            @else
-                                                <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                                                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
-                                                    {{ $data->status }}
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td class="flex items-center px-6 py-4 space-x-3">
-                                            <a href="{{ route('admin.transaction.show' , $data->id) }}"
-                                                class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</a>
-                                        </td>
-                                    </tr>
+                            @forelse ($transaction as $item)
+                            <tr
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{$item->no_invoice}}
+                                </th>
+                                <td class="px-6 py-4">
+                                    Rp {{$item->mount}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    @if($item->status == 'pending')
+                                    <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                                        <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                                        <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                            <span class="w-2 h-2 mr-1 bg-yellow-500 rounded-full"></span>
+                                            {{$data->status}}
+                                        </span>
+                                    </span>
+                                    @elseif ($item->status == 'success')
+                                    <span class="w-2 h-2 mr-1 bg-green-500 rounded-full"></span>
+                                        <span class="inline-flex items-center bg-yellow-100 text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                                            <span class="w-2 h-2 mr-1 bg-yellow-500 rounded-full"></span>
+                                            {{$data->status}}
+                                        </span>
+                                    </span>
+                                    @else
+                                    <span class="inline-flex items-center bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                                        <span class="w-2 h-2 mr-1 bg-red-500 rounded-full"></span>
+                                        {{$data->status}}
+                                    </span>
+                                    @endif
+                                </td>
+                                <td class="flex items-center px-6 py-4 space-x-3">
+                                    <a href="{{ route('admin.transaction.show' , $item->id) }}"
+                                        class="font-medium text-green-600 dark:text-green-500 hover:underline">Detail</a>
+                                </td>
+                            </tr>
                             @empty
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <td colspan="4" class="py-5">
-                                        <p>Data is NULL</p>
-                                    </td>
-                                </tr>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <td colspan="4" class="py-5 text-center">
+                                    <p>Data Is Null</p>
+                                </td>
+                            </tr>
                             @endforelse
                         </tbody>
                     </table>

@@ -42,15 +42,19 @@
                     Home</a>
                 </li>
                 <li>
-                    <a href=""
-                    class="{{ request()->Is("user/videos")? $classActive : $classInactive }}">
+                    <a href="{{route('video')}}"
+                    class="{{ request()->Is("video")? $classActive : $classInactive }}">
                     Video</a>
                 </li>
+                @if (Auth::check())
                 <li>
-                    <a href=""
-                    class="{{ request()->Is("user/my-videos")? $classActive : $classInactive }}">
+                    <a href="{{route('my_video')}}"
+                    class="{{ request()->Is("my_video")? $classActive : $classInactive }}">
                     My Video</a>
                 </li>
+                @else
+                
+                @endif
             </ul>
         </div>
     </div>
